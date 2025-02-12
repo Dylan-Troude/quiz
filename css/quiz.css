@@ -1,0 +1,72 @@
+/* Styles pour la page des quiz */
+.quiz-container {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(250.46deg, #26C5F3 7.82%, #E4FFCD 54.46%, #BE4EFF 101.09%);
+    min-height: 100vh;
+}
+
+.quiz-container h1 {
+    font-size: 45px;
+    color: white;
+    margin-bottom: 30px;
+    color:#695AEF;
+}
+
+/* Organisation des boutons en colonne */
+.quiz-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    width: 100%;
+}
+
+.quiz-buttons form {
+    width: 100%;
+    max-width: 1346px;
+}
+
+/* Taille des boutons ajustée */
+.quiz-buttons button {
+    width: 1346px;
+    height: 95px;
+    background-color: #695AEF;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.quiz-buttons button:hover {
+    background-color: #4a42c2;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+    .quiz-buttons button {
+        width: 90%;
+        height: 80px;
+        font-size: 28px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .quiz-buttons button {
+        width: 90%;
+        height: 70px;
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .quiz-buttons button {
+        width: 95%;
+        height: 60px;
+        font-size: 20px;
+    }
+}

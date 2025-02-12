@@ -14,8 +14,11 @@
     </section>
     
     <section class="main-button">
+    <a href="quiz.php">
         <button>Venez découvrir nos quiz</button>
-    </section>
+    </a>
+</section>
+
     
     <?php include './footer/footer.php'; ?>
 </body>
