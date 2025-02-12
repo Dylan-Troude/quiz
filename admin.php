@@ -16,15 +16,26 @@ if ($conn->connect_error) {
 // Ajouter une question avec requête préparée
 if(isset($_POST['add_question'])) {
     $question_text = $_POST['question'];
-    if (!empty($question_text)) {
-        $stmt = $conn->prepare("INSERT INTO question (question) VALUES (?)");
-        $stmt->bind_param("s", $question_text); // "s" est une chaîne
+    $quiz_id = $_POST['quiz_id'];
+    $reponse_1 = $_POST['reponse_1'];
+    $reponse_2 = $_POST['reponse_2'];
+    if (!empty($question_text) && !empty($quiz_id) && !empty($reponse_1) && !empty($reponse_2)) {
+        $stmt = $conn->prepare("INSERT INTO question (question, quiz_id) VALUES (?, ?)");
+        $stmt->bind_param("si", $question_text, $quiz_id); // "s" pour la chaîne, "i" pour l'ID du quiz
+        $stmt->execute();
+        $question_id = $stmt->insert_id;
+        $stmt->close();
+
+        $stmt = $conn->prepare("INSERT INTO reponse (id_question, reponse_1, reponse_2) VALUES(?, ?, ?)");
+        $stmt->bind_param("iss", $question_id, $reponse_1, $reponse_2);
         if ($stmt->execute()) {
             echo "Question ajoutée avec succès !";
         } else {
             echo "Erreur lors de l'ajout de la question : " . $stmt->error;
         }
         $stmt->close();
+    }else {
+        echo "Tous les champs doivent être remplis.";
     }
 }
 
@@ -67,7 +78,9 @@ $result = mysqli_query($conn, $query);
                 echo "<option value='".$quiz['id']."'>".$quiz['nom_quiz']."</option>";
          }
         ?>
-        </select>
+        </select>  
+        <input type="text" name="reponse_1" placeholder="Réponse 1" required>
+        <input type="text" name="reponse_2" placeholder="Réponse 2" required>
         <button type="submit" name="add_question">Ajouter la question</button>
     </form>
 

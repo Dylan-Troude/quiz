@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `name` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -48,7 +48,14 @@ CREATE TABLE IF NOT EXISTS `question` (
   `question` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_question_quiz` (`quiz_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Contrainte de supression en cascade pour les réponses liées aux question supprimées
+ALTER TABLE `reponse`
+ADD CONSTRAINT `fk_reponse_question`
+FOREIGN KEY (`id_question`) REFERENCES `question`(`id`)
+ON DELETE CASCADE;
+
 
 --
 -- Déchargement des données de la table `question`
@@ -83,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nom_quiz` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `quiz`
@@ -98,7 +105,7 @@ INSERT INTO `quiz` (`id`, `nom_quiz`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `reponse`
+-- Structure de la table `reponse` avec contrainte de suppression en cascade
 --
 
 DROP TABLE IF EXISTS `reponse`;
@@ -107,8 +114,11 @@ CREATE TABLE IF NOT EXISTS `reponse` (
   `id_question` int NOT NULL,
   `reponse_1` varchar(255) NOT NULL,
   `reponse_2` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_reponse_question`
+    FOREIGN KEY (`id_question`) REFERENCES `question`(`id`)
+    ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `reponse`
