@@ -1,0 +1,60 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #695AEF; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+
+.form-container {
+    background-color: #fff3cd; 
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+}
+
+
+.form-container h2 {
+    color: #000000; 
+    margin-bottom: 15px;
+}
+
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 2px solid #000000; 
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+button {
+    background-color: #000000; 
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #d63000;
+}
+
+
+.burger-icon {
+    width: 50px;
+    height: 50px;
+    background-image: url('burger-icon.png'); 
+    background-size: cover;
+    margin: 10px auto;
+}
