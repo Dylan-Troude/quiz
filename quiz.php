@@ -1,5 +1,5 @@
 <?php
-require 'config.php'; // Inclusion du fichier de configuration
+require 'config.php';
 
 try {
     // Récupérer tous les quiz
