@@ -7,16 +7,17 @@ try {
 } catch (PDOException $e) {
     die("Erreur de connexion à la base de données : " . $e->getMessage());
 }
-
+//$db = new Database();
 class User {
     private $name;
     private $password;
     private $db;
 
-    public function __construct($name, $password, $db) {
+    public function __construct($name, $password, $db,/*Database $db*/) {
         if (!$db instanceof PDO) {
             throw new Exception("Erreur : La connexion à la base de données est invalide.");
         }
+        //$this->db->select();
         $this->name = $name;
         $this->password = $password;
         $this->db = $db;
@@ -45,16 +46,17 @@ class User {
         $user = $query->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            $_SESSION['user'] = $user['name']; 
+            $_SESSION['user'] = $user['name'];
+            $_SESSION['id'] = $user['id']; 
             echo "Connexion réussie";
-            // header("Location: accueil.php");
+            header("Location: index.php");
             exit();
         } else {
             echo "Nom d'utilisateur ou mot de passe incorrect.";
         }
     }
 }
-
+var_dump($_SESSION['id']);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = htmlspecialchars($_POST['name']);
     $password = $_POST['password'];
