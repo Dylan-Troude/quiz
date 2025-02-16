@@ -48,7 +48,6 @@ class User {
         if ($user) {
             $_SESSION['user'] = $user['name'];
             $_SESSION['id'] = $user['id']; 
-            echo "Connexion réussie";
             header("Location: index.php");
             exit();
         } else {
@@ -56,7 +55,6 @@ class User {
         }
     }
 }
-var_dump($_SESSION['id']);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = htmlspecialchars($_POST['name']);
     $password = $_POST['password'];
