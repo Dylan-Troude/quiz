@@ -50,14 +50,13 @@ CREATE TABLE IF NOT EXISTS `question` (
   KEY `fk_question_quiz` (`quiz_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+
 -- Contrainte de supression en cascade pour les réponses liées aux question supprimées
-ALTER TABLE `reponse`
-ADD CONSTRAINT `fk_reponse_question`
-FOREIGN KEY (`id_question`) REFERENCES `question`(`id`)
-ON DELETE CASCADE;
+
 
 
 --
+
 -- Déchargement des données de la table `question`
 --
 
